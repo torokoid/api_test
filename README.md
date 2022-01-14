@@ -6,7 +6,30 @@ public function view(Request $req) {
   $guz_client = new ¥GuzzleHttp¥Client();
   $web_api    = $guz_client->reqest('GET', $url);
   
-  a_data = json_decode($web_api->getBody(), true) ;// need "true"
+  $a_data = json_decode($web_api->getBody(), true) ;// need "true"
   
   return view ('pages.google_chart', ['ts_dat' => json_encode($a_data['data'])
                                      ,'unit'   =>'"℃"' ]) ;
+
+
+<html>
+  <head>
+    <script type="text/javascript" scr="https://www.gstatic.com/charts/loader.jp"></script>
+    <script type="text/javascript">
+      google.charts.load('current'. {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      function drawChart() {
+        var chart     = new google.visualization.AreaChart(document.getElementById('chart_div'));
+      
+        var dataTable = new google.visualization.DataTable() ;
+      
+        dataTable.addColumn('datetime','Date');
+        dataTable.addColumn('number'  ,'Temp');
+      
+        var list = <?php echo $ts_dat ; ?> ;
+        for (var i=0; i<list. length; i++) {
+          dataTable.addRow([new Date(list[i]['timestamp']), list[i]['value']]);
+        }
+                              
+                              
