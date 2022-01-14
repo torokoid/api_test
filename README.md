@@ -32,4 +32,21 @@ public function view(Request $req) {
           dataTable.addRow([new Date(list[i]['timestamp']), list[i]['value']]);
         }
                               
+        var options = {
+          title: 'Tele-Sentient',
+          vAxis: {title: <?php echo $unit ?> },
+          explorer: { actions: ['dragToZoom' , 'rightClickToReset'] },
+        };
+      
+        chart.draw(dataTable, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 100%; height: 500px;"></div>
+    
+  </body>
+ </html>
+                              
+                              
                               
