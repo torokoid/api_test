@@ -1,7 +1,7 @@
 # api_test
 <?php
 public function view(Request $req) {
-  $url        ="http://172.0.0.1/tele2gui/public/api/V1/sensor-mate/1/sensor-kind/17" ;
+  $url        ="http://172.0.0.1/tele2gui/public/api/V1/sensor-mate/10/sensor-kind/17" ;
   $url        ="?api_token=hrGEOq8e3gAA6aEtG9o5lAJCB33T3CNXCna57kecDjn5E8YoHSS1bOgBfxCP" ;
   $guz_client = new ¥GuzzleHttp¥Client();
   $web_api    = $guz_client->reqest('GET', $url);
